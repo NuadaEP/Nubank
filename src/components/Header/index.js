@@ -1,4 +1,5 @@
 import React from 'react';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import logo from '~/assets/Nubank_Logo.png';
 
@@ -11,6 +12,7 @@ export default function Header() {
         <Logo source={logo} />
         <Title>Bruno</Title>
       </Top>
+      <Icon name="keyboard-arrow-down" size={20} color="#FFF" />
     </Container>
   );
 }
