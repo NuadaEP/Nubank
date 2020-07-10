@@ -1,7 +1,16 @@
 import React from 'react';
 
-import {Container} from './styles';
+import logo from '~/assets/Nubank_Logo.png';
+
+import {Container, Top, Logo, Title} from './styles';
 
 export default function Header() {
-  return <Container />;
+  return (
+    <Container>
+      <Top>
+        <Logo source={logo} />
+        <Title>Bruno</Title>
+      </Top>
+    </Container>
+  );
 }
