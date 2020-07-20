@@ -1,6 +1,8 @@
 import React from 'react';
+import {Animated} from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {PanGestureHandler, State} from 'react-native-gesture-handler';
 
 import Header from '~/components/Header';
 import Tabs from '~/components/Tabs';
@@ -19,6 +21,21 @@ import {
 } from './styles';
 
 export default function Main() {
+  const translateY = new Animated.Value(0);
+
+  const animatedEvent = Animated.event(
+    [
+      {
+        nativeEvent: {
+          translationY: translateY,
+        },
+      },
+    ],
+    {useNativeDriver: true},
+  );
+
+  function onHandlerStateChange(event) {}
+
   return (
     <Container>
       <Header />
@@ -26,21 +43,26 @@ export default function Main() {
       <Content>
         <Menu />
 
-        <Card>
-          <CardHeader>
-            <Icon name="attach-money" size={28} color="#666" />
-            <Icon name="visibility-off" size={28} color="#666" />
-          </CardHeader>
-          <CardContent>
-            <Title>Saldo diponível</Title>
-            <Description>R$ 7.611,65</Description>
-          </CardContent>
-          <CardFooter>
-            <Annotation>
-              Transferência de R$ 20,00 recebida de Bruno Cardoso hoje às 16:00h
-            </Annotation>
-          </CardFooter>
-        </Card>
+        <PanGestureHandler
+          onGestureEvent={animatedEvent}
+          onHandlerStateChange={onHandlerStateChange}>
+          <Card>
+            <CardHeader>
+              <Icon name="attach-money" size={28} color="#666" />
+              <Icon name="visibility-off" size={28} color="#666" />
+            </CardHeader>
+            <CardContent>
+              <Title>Saldo diponível</Title>
+              <Description>R$ 7.611,65</Description>
+            </CardContent>
+            <CardFooter>
+              <Annotation>
+                Transferência de R$ 20,00 recebida de Bruno Cardoso hoje às
+                16:00h
+              </Annotation>
+            </CardFooter>
+          </Card>
+        </PanGestureHandler>
       </Content>
 
       <Tabs />
