@@ -46,7 +46,18 @@ export default function Main() {
         <PanGestureHandler
           onGestureEvent={animatedEvent}
           onHandlerStateChange={onHandlerStateChange}>
-          <Card>
+          <Card
+            style={{
+              transform: [
+                {
+                  translateY: translateY.interpolate({
+                    inputRange: [-350, 0, 380],
+                    outputRange: [-50, 0, 380],
+                    extrapolate: 'clamp',
+                  }),
+                },
+              ],
+            }}>
             <CardHeader>
               <Icon name="attach-money" size={28} color="#666" />
               <Icon name="visibility-off" size={28} color="#666" />
