@@ -1,6 +1,6 @@
 import React from 'react';
 
-import QRCode from 'react-native-qrcode';
+import QRCode from 'react-native-qrcode-svg';
 
 import {Container, Code} from './styles';
 
