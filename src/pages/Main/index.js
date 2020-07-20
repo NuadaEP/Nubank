@@ -21,6 +21,7 @@ import {
 } from './styles';
 
 export default function Main() {
+  let offset = 0;
   const translateY = new Animated.Value(0);
 
   const animatedEvent = Animated.event(
@@ -34,7 +35,16 @@ export default function Main() {
     {useNativeDriver: true},
   );
 
-  function onHandlerStateChange(event) {}
+  function onHandlerStateChange(event) {
+    if (event.nativeEvent.oldState === State.ACTIVE) {
+      const {translationY} = event.nativeEvent;
+
+      offset += translationY;
+
+      translateY.setOffset(offset);
+      translateY.setValue(0);
+    }
+  }
 
   return (
     <Container>
